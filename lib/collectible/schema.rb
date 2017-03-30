@@ -9,7 +9,7 @@ module Collectible
     end
 
     def get_id(entity)
-      entity && entity[identifier]
+      entity && (entity.respond_to?(identifier) ? entity.send(identifier) : entity[identifier])
     end
 
     def id_present?(entity)
