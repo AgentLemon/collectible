@@ -5,7 +5,7 @@ module Collectible
 
       end
 
-      def parse(schema, row)
+      def parse(_schema, _row)
         fail "You must implement Parser::YourParser#parse method in your child class"
       end
 

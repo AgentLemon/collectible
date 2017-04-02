@@ -44,7 +44,7 @@ module Collectible
       entity
     end
 
-    def add_to_entity_collection(entity, key, item)
+    def add_to_entity_collection(_entity, _key, _item)
       fail "You must implement YourCollector#add_to_entity_collection method in your child class"
     end
 

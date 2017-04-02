@@ -1,8 +1,9 @@
+[![Code Climate](https://codeclimate.com/github/AgentLemon/collectible/badges/gpa.svg)](https://codeclimate.com/github/AgentLemon/collectible)
+[![Test Coverage](https://codeclimate.com/github/AgentLemon/collectible/badges/coverage.svg)](https://codeclimate.com/github/AgentLemon/collectible/coverage)
+
 # Collectible
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/collectible`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A gem to build a tree of hashes or objects from regular list like csv file or sql query.
 
 ## Installation
 
