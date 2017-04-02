@@ -35,13 +35,17 @@ module Collectible
           if value.is_a?(Schema)
             child = collect_schema(value, row)
             if schema.id_present?(child) && !entity_collection_contains?(value, entity, key, child)
-              entity_collection(entity, key) << child
+              add_to_entity_collection(entity, key, child)
             end
           end
         end
       end
 
       entity
+    end
+
+    def add_to_entity_collection(entity, key, item)
+      fail "You must implement YourCollector#add_to_entity_collection method in your child class"
     end
 
     def entity_collection_contains?(schema, entity, key, value)
