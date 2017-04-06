@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Collectible::HashCollector do
+describe "hash collections" do
   describe "simple collection" do
     let!(:schema) do
       Collectible::Schema.new(

@@ -1,36 +1,16 @@
 require "spec_helper"
+require "stubs/active_record_stub"
 
-class User
-  attr_accessor :id, :name, :posts
-  def initialize(params)
-    self.id, self.name, self.posts = params[:id], params[:name], params[:posts]
-  end
-end
-
-class Post
-  attr_accessor :id, :text, :attachments
-  def initialize(params)
-    self.id, self.text, self.attachments = params[:id], params[:text], params[:attachments]
-  end
-end
-
-class Attachment
-  attr_accessor :id, :filename
-  def initialize(params)
-    self.id, self.filename = params[:id], params[:filename]
-  end
-end
-
-describe "object collections" do
+describe "active record collections" do
   describe "simple collection" do
     let!(:schema) do
       Collectible::Schema.new(
-        User,
+        ActiveRecordStub::User,
         :id,
         id: "user_id",
         name: "name",
         posts: Collectible::Schema.new(
-          Post,
+          ActiveRecordStub::Post,
           :id,
           id: "post_id",
           text: "post_text"
@@ -82,17 +62,17 @@ describe "object collections" do
   describe "2 children collection" do
     let!(:schema) do
       Collectible::Schema.new(
-        User,
+        ActiveRecordStub::User,
         :id,
         id: "user_id",
         name: "name",
         posts: Collectible::Schema.new(
-          Post,
+          ActiveRecordStub::Post,
           :id,
           id: "post_id",
           text: "post_text",
           attachments: Collectible::Schema.new(
-            Attachment,
+            ActiveRecordStub::Attachment,
             :id,
             id: "attachment_id",
             filename: "filename"
