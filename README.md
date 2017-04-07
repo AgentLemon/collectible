@@ -1,5 +1,6 @@
 [![Code Climate](https://codeclimate.com/github/AgentLemon/collectible/badges/gpa.svg)](https://codeclimate.com/github/AgentLemon/collectible)
 [![Test Coverage](https://codeclimate.com/github/AgentLemon/collectible/badges/coverage.svg)](https://codeclimate.com/github/AgentLemon/collectible/coverage)
+![Test Status](https://travis-ci.org/AgentLemon/collectible.svg?branch=master)
 
 # Collectible
 
