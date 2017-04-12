@@ -24,7 +24,89 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You need to define schema and then call proper collector
+
+### Data
+
+Can be any collection like array, csv, ActiveRecord::Base.connection.execute result.
+
+    | user_id | name   | post_id | post_text    | attachment_id | filename |
+    =====================================================================
+    | 1       | Ivan   | 1       | hello        |               |          |
+    | 2       | Simeon | 2       | hi           | 1             | 1.png    |
+    | 2       | Simeon | 2       | hi           | 2             | 2.png    |
+    | 2       | Simeon | 3       | how are you? |               |          |
+
+### Schema
+
+Define the schema. Parameters: entity name or type, entity primary key field, entity fields specification.
+
+Schema for hash collector:
+
+    schema = Collectible::Schema.new(
+      :user,
+      :id,
+      id: "user_id",
+      name: "name",
+      posts: Collectible::Schema.new(
+        :post,
+        :id,
+        id: "post_id",
+        text: "post_text",
+        attachments: Collectible::Schema.new(
+          :attachment,
+          :id,
+          id: "attachment_id",
+          filename: "filename"
+        )
+      )
+    )
+    
+Schema for object collector:
+
+    schema = Collectible::Schema.new(
+      User,
+      :id,
+      id: "user_id",
+      name: "name",
+      posts: Collectible::Schema.new(
+        Post,
+        :id,
+        id: "post_id",
+        text: "post_text",
+        attachments: Collectible::Schema.new(
+          Attachment,
+          :id,
+          id: "attachment_id",
+          filename: "filename"
+        )
+      )
+    )
+
+### Collector
+
+Just call collect method of proper collector.
+
+    result = Collectible::HashCollector.new(schema).collect(data)  
+    
+    result = Collectible::ObjectCollector.new(schema).collect(data)
+    
+### Result    
+    
+Result from hash collector:
+
+    [
+      { id: "1", name: "Ivan", posts: [{ id: "1", text: "hello", attachments: [] }] },
+      { id: "2", name: "Simeon", posts: [
+        { id: "2", text: "hi", attachments: [
+          { id: "1", filename: "1.png" },
+          { id: "2", filename: "2.png" }
+        ]},
+        { id: "3", text: "how are you?", :attachments => [] }]
+      }
+    ]
+    
+Result from object collector will be the same, but instead of hashes there will be objects.
 
 ## Development
 

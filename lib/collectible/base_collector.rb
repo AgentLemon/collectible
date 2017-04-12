@@ -65,7 +65,7 @@ module Collectible
 
     def collect_klasses(schema)
       @klasses << schema.klass
-      schema.fields.each do |key, value|
+      schema.fields.each do |_key, value|
         collect_klasses(value) if value.is_a?(Schema)
       end
     end
